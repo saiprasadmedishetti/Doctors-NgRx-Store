@@ -1,0 +1,120 @@
+<div class="container pt-5">
+  <div class="form-group">
+    <div class="row">
+      <div class="col-auto">
+        <input
+          type="text"
+          class="form-control"
+          name="doctorname"
+          placeholder="Doctor Name"
+          [(ngModel)]="doctorName"
+          #addInput
+        />
+      </div>
+      <div class="col-auto ml-auto">
+        <button type="button" class="btn btn-primary" (click)="addDoctor(true)">
+          Add First
+        </button>
+        <button
+          type="button"
+          class="btn btn-secondary ml-3"
+          (click)="addDoctor(false)"
+        >
+          Add Last
+        </button>
+      </div>
+    </div>
+  </div>
+  <table class="table table-bordered text-center">
+    <thead>
+      <tr>
+        <th
+          (click)="sort('id')"
+          [class.up]="previousOrder !== 'id'"
+          [class.down]="previousOrder === 'id'"
+        >
+          S No
+        </th>
+        <th
+          (click)="sort('name')"
+          [class.up]="previousOrder !== 'name'"
+          [class.down]="previousOrder === 'name'"
+        >
+          Doctor Name
+        </th>
+        <th>Sort</th>
+        <th>Operations</th>
+      </tr>
+    </thead>
+    <tbody *ngIf="doctors.length > 0">
+      <tr *ngFor="let doctor of doctors; index as i">
+        <td>{{ doctor.id }}</td>
+        <td>
+          <input
+            *ngIf="isEdit && selectedDoctor === doctor.id"
+            type="text"
+            class="form-control"
+            [ngModel]="doctor.name"
+            (ngModelChange)="doctorChange($event)"
+          />
+
+          <span *ngIf="!(isEdit && selectedDoctor === doctor.id)">{{
+            doctor.name
+          }}</span>
+        </td>
+        <td>
+          <button
+            class="btn btn-sm btn-light"
+            type="button"
+            (click)="sort('id')"
+          >
+            Sort By ID
+          </button>
+
+          <button
+            class="btn btn-sm btn-light"
+            type="button"
+            (click)="sort('name')"
+          >
+            Sort By Name
+          </button>
+        </td>
+        <td>
+          <button
+            *ngIf="!isEdit"
+            class="btn btn-sm btn-outline-primary"
+            type="button"
+            (click)="edit(doctor.id)"
+          >
+            Edit
+          </button>
+
+          <button
+            *ngIf="isEdit"
+            class="btn btn-sm btn-outline-success"
+            type="button"
+            (click)="saveDoctor(doctor)"
+          >
+            Save & Sort
+          </button>
+          <button
+            *ngIf="isEdit"
+            class="btn btn-sm btn-outline-danger"
+            type="button"
+            (click)="isEdit = false"
+          >
+            Cancel
+          </button>
+          <button
+            *ngIf="!isEdit"
+            class="btn btn-sm btn-outline-danger"
+            type="button"
+            (click)="deleteDoctor(doctor)"
+          >
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

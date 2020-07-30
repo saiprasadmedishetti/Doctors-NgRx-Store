@@ -1,0 +1,55 @@
+$text-color: #252525;
+
+.container {
+  max-width: 800px;
+}
+
+%arrow {
+  content: "";
+  height: 0;
+  width: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  position: absolute;
+  right: 15px;
+  top: 20px;
+  bottom: auto;
+}
+.table thead th {
+  cursor: pointer;
+  user-select: none;
+  &.up,
+  &.down {
+    position: relative;
+    padding-right: 1rem;
+    &::after {
+      content: "";
+      height: 0;
+      width: 0;
+      border-left: 6px solid transparent;
+      border-right: 6px solid transparent;
+      position: absolute;
+      right: 15px;
+      top: 20px;
+      bottom: auto;
+    }
+  }
+}
+
+.up::after {
+  border-top: 10px solid $text-color;
+}
+.down::after {
+  border-bottom: 10px solid $text-color;
+}
+
+.btn {
+  & + & {
+    margin-left: 0.5rem;
+  }
+  &-light:focus {
+    background-color: aliceblue;
+    border-color: aliceblue;
+    box-shadow: none;
+  }
+}
