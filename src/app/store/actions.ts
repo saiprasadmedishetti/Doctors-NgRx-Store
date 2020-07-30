@@ -6,7 +6,6 @@ export enum ActionTypes {
   Get = '[Doctor] Gel Doctors',
   Update = '[Doctors] Update Doctor',
   Delete = '[Doctor] Delete Doctor',
-  // LoadSuccess = '[Doctors] Load success'
 }
 
 export class AddDoctor implements Action {

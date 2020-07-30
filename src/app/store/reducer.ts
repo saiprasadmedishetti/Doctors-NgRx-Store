@@ -1,5 +1,4 @@
 import { Actions, ActionTypes } from './actions';
-import { isNgTemplate } from '@angular/compiler';
 
 export const initialState = [];
 
@@ -14,7 +13,6 @@ export function DoctorReducer(state = initialState, action: Actions) {
         : [...state, action.payload];
 
     case ActionTypes.Update:
-      console.log(action.payload);
       return [...state].map((item) => {
         if (item.id !== action.payload.id) {
           return item;

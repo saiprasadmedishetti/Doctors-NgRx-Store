@@ -67,14 +67,12 @@ export class DoctorComponent implements OnInit {
 
     this.changedName = '';
     this.isEdit = false;
-    console.log(this.doctors);
   }
   deleteDoctor(doctor) {
     this.store.dispatch(new DeleteDoctor(doctor));
   }
   sort(order = 'id') {
     this.sortActiveColumn = order;
-    console.log(this.previousOrder);
     if (this.previousOrder !== order) {
       this.doctors = [...this.doctors].sort((a, b) =>
         order === 'id' ? a[order] - b[order] : a[order].localeCompare(b[order])
